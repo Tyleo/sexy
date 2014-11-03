@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\sexy">
+      <UniqueIdentifier>{68492691-cafb-418f-9e06-dfd6813757e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sexy_impl">
+      <UniqueIdentifier>{22d15edf-71f1-42c7-aec9-734c12e65183}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sexy">
+      <UniqueIdentifier>{77b479ec-b2e8-4fc9-b2c9-b9161f334e7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sexy_impl">
+      <UniqueIdentifier>{88d1cb77-f091-4640-8bb6-7c516100d4d4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sexy.h">
+      <Filter>Header Files\sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="entity.h">
+      <Filter>Header Files\sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="component.h">
+      <Filter>Header Files\sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="system.h">
+      <Filter>Header Files\sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="system_impl.h">
+      <Filter>Header Files\sexy_impl</Filter>
+    </ClInclude>
+    <ClInclude Include="two_way_map.h">
+      <Filter>Header Files\sexy_impl</Filter>
+    </ClInclude>
+    <ClInclude Include="type_identifier.h">
+      <Filter>Header Files\sexy_impl</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="component.cpp">
+      <Filter>Source Files\sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="entity.cpp">
+      <Filter>Source Files\sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="system.cpp">
+      <Filter>Source Files\sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="sexy.cpp">
+      <Filter>Source Files\sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="system_impl.cpp">
+      <Filter>Source Files\sexy_impl</Filter>
+    </ClCompile>
+    <ClCompile Include="type_identifier.cpp">
+      <Filter>Source Files\sexy_impl</Filter>
+    </ClCompile>
+    <ClCompile Include="two_way_map.cpp">
+      <Filter>Source Files\sexy_impl</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
