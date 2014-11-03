@@ -33,7 +33,10 @@ namespace tyleo
             return impl::SystemImpl<TSystem, TComponents ...>::GetComponentsToRemoveListPtr<TComponentToGetListFrom>();
         }
 
-        void AddToMasterRemoveMap() { }
+        void AddComponentRemoveListToMasterRemoveMap()
+        {
+            impl::SystemImpl<TSystem, TComponents ...>::AddComponentRemoveListToMasterRemoveMap(_masterComponentsToRemoveMap);
+        }
 
         template <typename TComponent, typename ... TComponentsInternal>
         void AddToMasterRemoveMap()
@@ -45,12 +48,13 @@ namespace tyleo
         {
             for (auto entity : _entitiesToRemove)
             {
-                _deadEntities.emplace_back(entity);
-
                 for (auto componentTypeId : _entityToComponentTypeMap.at(entity))
                 {
                     _masterComponentsToRemoveMap.at(componentTypeId)->emplace_back(entity);
                 }
+
+                _entityToComponentTypeMap.erase(entity);
+                _deadEntities.emplace_back(entity);
             }
 
             _entitiesToRemove.clear();
@@ -75,6 +79,21 @@ namespace tyleo
             impl::SystemImpl<TSystem, TComponents ...>::Update();
 
             AddComponents();
+        }
+
+        Entity GetNumberOfEntities()
+        {
+            return _entityToComponentTypeMap.size();
+        }
+
+        size_t GetNumberOfComponents()
+        {
+            return impl::SystemImpl<TSystem, TComponents ...>::GetNumberOfComponents();
+        }
+
+        ComponentTypeId GetNumberOfComponents(Entity entity)
+        {
+            return _entityToComponentTypeMap.at(entity).size();
         }
 
         Entity CreateEntity()
@@ -103,9 +122,15 @@ namespace tyleo
         }
 
         template <typename TComponent>
-        TComponent & GetComponentFromEntity(Entity entity)
+        ComponentTypeId GetComponentTypeId()
         {
-            return *static_cast<TComponent *>(impl::SystemImpl<TComponents ...>::GetComponentFromEntity<TComponent>(entity).get());
+            return impl::SystemImpl<TSystem, TComponents ...>::GetComponentTypeId<TComponent>();
+        }
+
+        template <typename TComponent>
+        ComponentPtr<TComponent> GetComponentFromEntity(Entity entity)
+        {
+            return impl::SystemImpl<TSystem, TComponents ...>::GetComponentFromEntity<TComponent>(entity);
         }
 
         template <typename TComponent, typename ... TArgs>
@@ -113,6 +138,7 @@ namespace tyleo
         {
             ComponentPtr<TComponent> componentPtr{ impl::SystemImpl<TSystem, TComponents ...>::AddComponentToEntity<TComponent>(entity) };
             componentPtr->Start(args ...);
+            _entityToComponentTypeMap.at(entity).emplace(GetComponentTypeId<TComponent>());
             return componentPtr;
         }
 
@@ -120,6 +146,7 @@ namespace tyleo
         void RemoveComponentFromEntity(Entity entity)
         {
             impl::SystemImpl<TSystem, TComponents ...>::RemoveComponentFromEntity<TComponent>(entity);
+            _entityToComponentTypeMap.at(entity).erase(GetComponentTypeId<TComponent>());
         }
 
         System() : impl::SystemImpl<TSystem, TComponents ...>(),
@@ -128,15 +155,17 @@ namespace tyleo
                    _entitiesToRemove(),
                    _deadEntities(0),
                    _entityCounter(1)
-        {}
+        {
+            AddComponentRemoveListToMasterRemoveMap();
+        }
     };
 
 #define REGISTER_SYSTEM_BEGIN(SYSTEM_NAME) \
     class SYSTEM_NAME; \
     namespace \
-        { \
+    { \
         using RegisteredSystem = SYSTEM_NAME; \
-        }
+    }
 
 #define REGISTER_COMPONENT(COMPONENT_NAME) \
     using COMPONENT_NAME = COMPONENT_NAME##Template<RegisteredSystem>; \

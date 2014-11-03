@@ -8,7 +8,7 @@ namespace sexy_test
 {
     namespace sys0
     {
-        REGISTER_SYSTEM_BEGIN(TestSystemi);
+        REGISTER_SYSTEM_BEGIN(TestSystem);
         REGISTER_SYSTEM_END();
 
         BEGIN_SYSTEM(TestSystem)

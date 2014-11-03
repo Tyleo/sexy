@@ -18,12 +18,24 @@ namespace tyleo
         template <typename TSystem>
         class SystemImpl<TSystem>
         {
+        private:
+            using ComponentsToRemoveList = std::vector<Entity> ;
+            using ComponentsToRemoveListPtr = std::shared_ptr<ComponentsToRemoveList> ;
+            using MasterComponentsToRemoveMap = std::unordered_map<ComponentTypeId, ComponentsToRemoveListPtr>;
+
         protected:
             void AddComponents() {}
 
             void RemoveComponents() {}
 
             void Update() {}
+
+            void AddComponentRemoveListToMasterRemoveMap(MasterComponentsToRemoveMap & masterComponentsToRemoveMap) {}
+
+            size_t GetNumberOfComponents()
+            {
+                return 0;
+            }
 
             template <typename TComponentTypeIdToGet>
             ComponentTypeId GetComponentTypeId()
@@ -53,6 +65,7 @@ namespace tyleo
             using ComponentsToAddListPtr = std::shared_ptr<ComponentsToAddList>;
             using ComponentsToRemoveList = std::vector<Entity>;
             using ComponentsToRemoveListPtr = std::shared_ptr<ComponentsToRemoveList>;
+            using MasterComponentsToRemoveMap = std::unordered_map<ComponentTypeId, ComponentsToRemoveListPtr>;
 
             EntityToComponentPtrMap _entityToComponentPtrMap;
 
@@ -60,28 +73,10 @@ namespace tyleo
             ComponentsToRemoveListPtr _componentsToRemoveListPtr;
 
         protected:
-            template <typename TComponentToGetListFrom>
-            ComponentsToAddListPtr GetComponentsToAddListPtr()
+            void AddComponentRemoveListToMasterRemoveMap(MasterComponentsToRemoveMap & masterComponentsToRemoveMap)
             {
-                return SystemImpl<TComponents ...>::GetComponentsToAddListPtr<TComponentToGetListFrom>();
-            }
-
-            template <>
-            ComponentsToAddListPtr GetComponentsToAddListPtr<TComponent>()
-            {
-                return _componentsToAddListPtr;
-            }
-
-            template <typename TComponentToGetListFrom>
-            ComponentsToRemoveListPtr GetComponentsToRemoveListPtr()
-            {
-                return SystemImpl<TComponents ...>::GetComponentsToRemoveListPtr<TComponentToGetListFrom>();
-            }
-
-            template <>
-            ComponentsToRemoveListPtr GetComponentsToRemoveListPtr<TComponent>()
-            {
-                return ComponentsToRemoveListPtr;
+                masterComponentsToRemoveMap.emplace(std::make_pair(GetComponentTypeId<TComponent>(), _componentsToRemoveListPtr));
+                SystemImpl<TSystem, TComponents ...>::AddComponentRemoveListToMasterRemoveMap(masterComponentsToRemoveMap);
             }
 
             void AddComponents()
@@ -116,10 +111,15 @@ namespace tyleo
                 SystemImpl<TSystem, TComponents ...>::Update();
             }
 
+            size_t GetNumberOfComponents()
+            {
+                return SystemImpl<TSystem, TComponents ...>::GetNumberOfComponents() + _entityToComponentPtrMap.size();
+            }
+
             template <typename TComponentTypeIdToGet>
             ComponentTypeId GetComponentTypeId()
             {
-                return SystemImpl<TComponents ...>::GetComponentTypeId<TComponentTypeIdToGet>();
+                return SystemImpl<TSystem, TComponents ...>::GetComponentTypeId<TComponentTypeIdToGet>();
             }
 
             template <>
@@ -131,7 +131,7 @@ namespace tyleo
             template <typename TComponentToGet>
             ComponentPtr<TComponentToGet> GetComponentFromEntity(Entity entityId)
             {
-                return SystemImpl<TComponents ...>::GetComponentFromEntity<TComponentToAdd>(entityId);
+                return SystemImpl<TSystem, TComponents ...>::GetComponentFromEntity<TComponentToGet>(entityId);
             }
 
             template <>
