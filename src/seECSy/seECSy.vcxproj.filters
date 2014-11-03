@@ -48,12 +48,6 @@
     <ClInclude Include="system_impl.h">
       <Filter>Header Files\sexy_impl</Filter>
     </ClInclude>
-    <ClInclude Include="two_way_map.h">
-      <Filter>Header Files\sexy_impl</Filter>
-    </ClInclude>
-    <ClInclude Include="type_identifier.h">
-      <Filter>Header Files\sexy_impl</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -72,12 +66,6 @@
       <Filter>Source Files\sexy</Filter>
     </ClCompile>
     <ClCompile Include="system_impl.cpp">
-      <Filter>Source Files\sexy_impl</Filter>
-    </ClCompile>
-    <ClCompile Include="type_identifier.cpp">
-      <Filter>Source Files\sexy_impl</Filter>
-    </ClCompile>
-    <ClCompile Include="two_way_map.cpp">
       <Filter>Source Files\sexy_impl</Filter>
     </ClCompile>
   </ItemGroup>
