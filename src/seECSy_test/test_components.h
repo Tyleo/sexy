@@ -26,5 +26,9 @@ namespace sexy_test
         {
             _data = data;
         }
+
+        TestComponent1(TSystem & ownerSystem, tyleo::Entity ownerEntity, int data) : tyleo::Component<TSystem>(ownerSystem, ownerEntity),
+                                                                                     _data{ data }
+        {}
     END_COMPONENT();
 }

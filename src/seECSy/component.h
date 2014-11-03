@@ -31,13 +31,6 @@ namespace tyleo
         // CRTP Method
         void Update() {}
 
-        // CRTP Method
-        template <typename ... TArgs>
-        void Start(TArgs ... args) {}
-
-        // CRTP Method
-        void End() {}
-
         Component() = default;
 
         Component(TSystem & ownerSystem, Entity ownerEntity) : _ownerSystem{ ownerSystem },
@@ -49,18 +42,20 @@ namespace tyleo
     using ComponentPtr = std::shared_ptr<TComponent>;
 
 #define BEGIN_COMPONENT(COMPONENT_NAME) \
-    template <typename TSystem> \
-    class COMPONENT_NAME##Template : public tyleo::Component<TSystem> \
+    namespace component_templates \
+    { \
+        template <typename TSystem> \
+        class COMPONENT_NAME : public tyleo::Component<TSystem> \
         { \
-    public: \
-        COMPONENT_NAME##Template() = default; \
+        public: \
+            COMPONENT_NAME() = default; \
          \
-        COMPONENT_NAME##Template(TSystem & ownerSystem, tyleo::Entity ownerEntity) : tyleo::Component<TSystem>(ownerSystem, ownerEntity) \
-            {} \
+            COMPONENT_NAME(TSystem & ownerSystem, tyleo::Entity ownerEntity) : tyleo::Component<TSystem>(ownerSystem, ownerEntity) \
+                {} \
          \
-    private: \
-        
+        private:
 
 #define END_COMPONENT() \
+        }; \
     }
 }

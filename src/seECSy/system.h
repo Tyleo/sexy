@@ -136,8 +136,8 @@ namespace tyleo
         template <typename TComponent, typename ... TArgs>
         ComponentPtr<TComponent> AddComponentToEntity(Entity entity, TArgs & ... args)
         {
-            ComponentPtr<TComponent> componentPtr{ impl::SystemImpl<TSystem, TComponents ...>::AddComponentToEntity<TComponent>(entity) };
-            componentPtr->Start(args ...);
+            auto componentPtr = std::make_shared<TComponent>(*static_cast<TSystem *>(this), entity, args ...);
+            impl::SystemImpl<TSystem, TComponents ...>::AddComponentToEntity<TComponent>(componentPtr, entity);
             _entityToComponentTypeMap.at(entity).emplace(GetComponentTypeId<TComponent>());
             return componentPtr;
         }
@@ -168,7 +168,7 @@ namespace tyleo
     }
 
 #define REGISTER_COMPONENT(COMPONENT_NAME) \
-    using COMPONENT_NAME = COMPONENT_NAME##Template<RegisteredSystem>; \
+    using COMPONENT_NAME = component_templates::COMPONENT_NAME<RegisteredSystem>; \
     using COMPONENT_NAME##Ptr = tyleo::ComponentPtr<COMPONENT_NAME>;
 
 #define REGISTER_SYSTEM_END()

@@ -51,6 +51,16 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>echo f | xcopy /y $(SolutionDir)seECSy\component.h $(SolutionDir)Debug\include\seECSy\component.h
+echo f | xcopy /y $(SolutionDir)seECSy\entity.h $(SolutionDir)Debug\include\seECSy\entity.h
+echo f | xcopy /y $(SolutionDir)seECSy\sexy.h $(SolutionDir)Debug\include\seECSy\sexy.h
+echo f | xcopy /y $(SolutionDir)seECSy\system.h $(SolutionDir)Debug\include\seECSy\system.h
+echo f | xcopy /y $(SolutionDir)seECSy\system_impl.h $(SolutionDir)Debug\include\seECSy\system_impl.h</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>echo f | xcopy /y $(SolutionDir)Debug\seECSy.lib $(SolutionDir)Debug\lib\seECSy.lib</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -69,11 +79,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="entity.h" />
-    <ClInclude Include="component.h" />
-    <ClInclude Include="sexy.h" />
+    <ClInclude Include="entity.h">
+      <DeploymentContent>false</DeploymentContent>
+    </ClInclude>
+    <ClInclude Include="component.h">
+      <DeploymentContent>false</DeploymentContent>
+    </ClInclude>
+    <ClInclude Include="sexy.h">
+      <DeploymentContent>false</DeploymentContent>
+    </ClInclude>
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="system.h" />
+    <ClInclude Include="system.h">
+      <DeploymentContent>false</DeploymentContent>
+    </ClInclude>
     <ClInclude Include="system_impl.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

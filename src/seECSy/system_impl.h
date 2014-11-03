@@ -141,15 +141,14 @@ namespace tyleo
             }
 
             template <typename TComponentToAdd>
-            ComponentPtr<TComponentToAdd> AddComponentToEntity(Entity entity)
+            ComponentPtr<TComponentToAdd> AddComponentToEntity(ComponentPtr<TComponentToAdd> & componentPtr, Entity entity)
             {
-                return SystemImpl<TSystem, TComponents ...>::AddComponentToEntity<TComponentToAdd>(entity);
+                return SystemImpl<TSystem, TComponents ...>::AddComponentToEntity<TComponentToAdd>(componentPtr, entity);
             }
 
             template <>
-            ComponentPtr<TComponent> AddComponentToEntity<TComponent>(Entity entity)
+            ComponentPtr<TComponent> AddComponentToEntity<TComponent>(ComponentPtr<TComponent> & componentPtr, Entity entity)
             {
-                auto componentPtr = std::make_shared<TComponent>(*static_cast<TSystem *>(this), entity);
                 _componentsToAddListPtr->emplace_back(std::make_pair(entity, componentPtr));
                 return componentPtr;
             }
