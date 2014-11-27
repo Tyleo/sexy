@@ -1,4 +1,4 @@
-seECSy
+sexy
 ======
 
-A C++ entity component system which doesn't rely on a single virtual method call!
+A fast C++ entity component system which doesn't rely on any virtual method calls!

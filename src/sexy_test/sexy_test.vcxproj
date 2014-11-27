@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{CDEA7E01-6CF3-4725-B16F-DB0279DD053E}</ProjectGuid>
+    <ProjectGuid>{4F6AC2BB-16A8-458F-80F5-A0F170D9010B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>seECSy_test</RootNamespace>
+    <RootNamespace>sexy_test</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -51,16 +51,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)seECSy\;$(SolutionDir)gtest\include\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)gtest\include;$(SolutionDir)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)gtest\lib;</AdditionalLibraryDirectories>
       <AdditionalDependencies>gtest.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)gtest\lib\</AdditionalLibraryDirectories>
-      <IgnoreSpecificDefaultLibraries>
-      </IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -80,14 +78,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="component.h" />
+    <ClInclude Include="event.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="system.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="test_components.h" />
-    <ClInclude Include="test_systems.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="entity_test.cpp" />
-    <ClCompile Include="seECSy_test.cpp" />
+    <ClCompile Include="iterator_test.cpp" />
+    <ClCompile Include="sexy_test.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -95,8 +94,8 @@
     <ClCompile Include="system_test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\seECSy\seECSy.vcxproj">
-      <Project>{926b8a3d-c29b-44df-8e18-0ac66b47bc28}</Project>
+    <ProjectReference Include="..\sexy\sexy.vcxproj">
+      <Project>{ee960d30-922c-4260-a3a3-c0c8e528e987}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

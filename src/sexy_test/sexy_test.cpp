@@ -1,9 +1,8 @@
-// seECSy_test.cpp : Defines the entry point for the console application.
-//
-
 #include "stdafx.h"
 
-#include "gtest\gtest.h"
+#include <cstdlib>
+
+#include "gtest/gtest.h"
 
 using namespace testing;
 
@@ -15,3 +14,4 @@ int main(int argc, char ** argv)
 
     return EXIT_SUCCESS;
 }
+

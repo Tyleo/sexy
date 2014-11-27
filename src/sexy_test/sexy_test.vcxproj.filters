@@ -13,14 +13,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\classes">
-      <UniqueIdentifier>{b08adc5c-4baa-42f7-bb2b-95894e1fbf2c}</UniqueIdentifier>
+    <Filter Include="Source Files\sexy">
+      <UniqueIdentifier>{28f826fb-36e7-492b-b791-0725a07205de}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\tests">
-      <UniqueIdentifier>{f9fd4906-f8aa-4a86-a807-779243fb4f9f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tests\sexy">
-      <UniqueIdentifier>{9137ec47-eb6e-4b2e-8e38-fa6da66ca7da}</UniqueIdentifier>
+    <Filter Include="Header Files\sexy">
+      <UniqueIdentifier>{ec604732-dac7-49dd-9c64-82691f2fc49b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -30,25 +27,28 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="test_components.h">
-      <Filter>Header Files\classes</Filter>
+    <ClInclude Include="system.h">
+      <Filter>Header Files\sexy</Filter>
     </ClInclude>
-    <ClInclude Include="test_systems.h">
-      <Filter>Header Files\classes</Filter>
+    <ClInclude Include="component.h">
+      <Filter>Header Files\sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="event.h">
+      <Filter>Header Files\sexy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="seECSy_test.cpp">
+    <ClCompile Include="sexy_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="entity_test.cpp">
-      <Filter>Source Files\tests\sexy</Filter>
-    </ClCompile>
     <ClCompile Include="system_test.cpp">
-      <Filter>Source Files\tests\sexy</Filter>
+      <Filter>Source Files\sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="iterator_test.cpp">
+      <Filter>Source Files\sexy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

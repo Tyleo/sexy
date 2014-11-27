@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{926B8A3D-C29B-44DF-8E18-0AC66B47BC28}</ProjectGuid>
+    <ProjectGuid>{EE960D30-922C-4260-A3A3-C0C8E528E987}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>seECSy</RootNamespace>
+    <RootNamespace>sexy</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -46,20 +46,34 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <PreBuildEvent>
-      <Command>echo f | xcopy /y $(SolutionDir)seECSy\component.h $(SolutionDir)Debug\include\seECSy\component.h
-echo f | xcopy /y $(SolutionDir)seECSy\entity.h $(SolutionDir)Debug\include\seECSy\entity.h
-echo f | xcopy /y $(SolutionDir)seECSy\sexy.h $(SolutionDir)Debug\include\seECSy\sexy.h
-echo f | xcopy /y $(SolutionDir)seECSy\system.h $(SolutionDir)Debug\include\seECSy\system.h
-echo f | xcopy /y $(SolutionDir)seECSy\system_impl.h $(SolutionDir)Debug\include\seECSy\system_impl.h</Command>
-    </PreBuildEvent>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Lib>
     <PostBuildEvent>
-      <Command>echo f | xcopy /y $(SolutionDir)Debug\seECSy.lib $(SolutionDir)Debug\lib\seECSy.lib</Command>
+      <Command>echo f | xcopy /y $(SolutionDir)sexy\component.h $(OutDir)sexy\include\sexy\component.h
+echo f | xcopy /y $(SolutionDir)sexy\component_description.h $(OutDir)sexy\include\sexy\component_description.h
+echo f | xcopy /y $(SolutionDir)sexy\component_register.h $(OutDir)sexy\include\sexy\component_register.h
+echo f | xcopy /y $(SolutionDir)sexy\iterator.h $(OutDir)sexy\include\sexy\iterator.h
+echo f | xcopy /y $(SolutionDir)sexy\sexy.h $(OutDir)sexy\include\sexy\sexy.h
+echo f | xcopy /y $(SolutionDir)sexy\system.h $(OutDir)sexy\include\sexy\system.h
+echo f | xcopy /y $(SolutionDir)sexy\system_description.h $(OutDir)sexy\include\sexy\system_description.h
+echo f | xcopy /y $(SolutionDir)sexy\system_impl.h $(OutDir)sexy\include\sexy\system_impl.h
+echo f | xcopy /y $(SolutionDir)sexy\system_register.h $(OutDir)sexy\include\sexy\system_register.h
+echo f | xcopy /y $(SolutionDir)sexy\typedefs.h $(OutDir)sexy\include\sexy\typedefs.h
+
+echo f | xcopy /y $(SolutionDir)Debug\sexy.lib $(OutDir)sexy\lib\sexy.lib</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -79,32 +93,24 @@ echo f | xcopy /y $(SolutionDir)seECSy\system_impl.h $(SolutionDir)Debug\include
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="entity.h">
-      <DeploymentContent>false</DeploymentContent>
-    </ClInclude>
-    <ClInclude Include="component.h">
-      <DeploymentContent>false</DeploymentContent>
-    </ClInclude>
-    <ClInclude Include="sexy.h">
-      <DeploymentContent>false</DeploymentContent>
-    </ClInclude>
+    <ClInclude Include="component.h" />
+    <ClInclude Include="component_register.h" />
+    <ClInclude Include="component_description.h" />
+    <ClInclude Include="iterator.h" />
+    <ClInclude Include="sexy.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="system.h">
-      <DeploymentContent>false</DeploymentContent>
-    </ClInclude>
+    <ClInclude Include="system.h" />
+    <ClInclude Include="system_description.h" />
     <ClInclude Include="system_impl.h" />
+    <ClInclude Include="system_register.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="typedefs.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="component.cpp" />
-    <ClCompile Include="entity.cpp" />
-    <ClCompile Include="sexy.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="system.cpp" />
-    <ClCompile Include="system_impl.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
