@@ -73,7 +73,7 @@ echo f | xcopy /y "$(SolutionDir)sexy\system_impl.h" "$(OutDir)sexy\include\sexy
 echo f | xcopy /y "$(SolutionDir)sexy\system_register.h" "$(OutDir)sexy\include\sexy\system_register.h"
 echo f | xcopy /y "$(SolutionDir)sexy\typedefs.h" "$(OutDir)sexy\include\sexy\typedefs.h"
 
-echo f | xcopy /y "$(SolutionDir)Debug\sexy.lib" "$(OutDir)sexy\lib\sexy.lib"</Command>
+echo f | xcopy /y "$(OutDir)sexy.lib" "$(OutDir)sexy\lib\sexy.lib"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
