@@ -2,9 +2,9 @@
 
 namespace sexy_test
 {
-    struct PreTestEvent;
+    struct PreTestEvent { };
 
-    struct TestEvent;
+    struct TestEvent { };
 
-    struct PostTestEvent;
+    struct PostTestEvent { };
 }

@@ -27,11 +27,26 @@ namespace sexy
     #define COMPONENT_INTERNALS \
         public: \
         template <typename TEvent, typename ... TArgs> \
-        static void Pre(const TArgs & ...) { } \
+        static void Pre(const TArgs & ... args) \
+        { \
+            Pre(TEvent{}, args ...); \
+        } \
         template <typename TEvent, typename ... TArgs> \
-        void On(const TArgs & ...) { } \
+        inline static void Pre(TEvent, const TArgs & ...) { } \
         template <typename TEvent, typename ... TArgs> \
-        static void Post(const TArgs & ...) { } \
+        void On(const TArgs & ... args) \
+        { \
+            On(TEvent{}, args ...); \
+        } \
+        template <typename TEvent, typename ... TArgs> \
+        inline void On(TEvent, const TArgs & ...) { } \
+        template <typename TEvent, typename ... TArgs> \
+        static void Post(const TArgs & ... args) \
+        { \
+            Post(TEvent{}, args ...); \
+        } \
+        template <typename TEvent, typename ... TArgs> \
+        inline static void Post(TEvent, const TArgs & ...) { } \
         private:
 
     #define COMPONENT_START() \
