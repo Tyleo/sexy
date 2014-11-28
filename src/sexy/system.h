@@ -84,6 +84,11 @@ namespace sexy
             FlushRemoveBuffers();
         }
 
+        const float GetDeltaTime() const
+        {
+            return _deltaTime;
+        }
+
         const Entity CreateEntity()
         {
             Entity returnValue;
