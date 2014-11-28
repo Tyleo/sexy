@@ -90,7 +90,7 @@ namespace sexy
 
                 for (const auto & entityComponentPtrPair : _componentsToAdd)
                 {
-                    entityComponentPtrPair.second->On<events::Initialize>(this);
+                    entityComponentPtrPair.second->On<events::Initialize>(static_cast<CSystem *>(this));
                 }
 
                 _componentsToAdd.clear();
@@ -100,7 +100,7 @@ namespace sexy
             {
                 for (const auto & entity : *_componentsToRemove)
                 {
-                    _components.find(entity)->second->On<events::Uninitialize>(this);
+                    _components.find(entity)->second->On<events::Uninitialize>(static_cast<CSystem *>(this));
                 }
 
                 Base::FlushRemoveBuffers();

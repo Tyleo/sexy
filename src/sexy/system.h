@@ -78,7 +78,7 @@ namespace sexy
 
             static_cast<CSystem * const>(this)->CustomUpdate();
 
-            SendAll<events::Update>(this);
+            SendAll<events::Update>(static_cast<CSystem *>(this));
 
             FlushAddBuffers();
             FlushRemoveBuffers();
@@ -86,7 +86,7 @@ namespace sexy
 
         const float GetDeltaTime() const
         {
-            return _deltaTime;
+            return _deltaTime.count();
         }
 
         const Entity CreateEntity()
