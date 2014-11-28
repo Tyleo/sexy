@@ -3,6 +3,7 @@
 #include <type_traits>
 #include <utility>
 
+#include "events.h"
 #include "component_register.h"
 #include "system_register.h"
 
@@ -89,7 +90,7 @@ namespace sexy
 
                 for (const auto & entityComponentPtrPair : _componentsToAdd)
                 {
-                    entityComponentPtrPair.second->Start(*static_cast<CSystem *>(this));
+                    entityComponentPtrPair.second->On<events::Initialize>(this);
                 }
 
                 _componentsToAdd.clear();
@@ -97,14 +98,19 @@ namespace sexy
 
             inline void FlushRemoveBuffers()
             {
+                for (const auto & entity : *_componentsToRemove)
+                {
+                    _components.find(entity)->second->On<events::Uninitialize>(this);
+                }
+
+                Base::FlushRemoveBuffers();
+
                 for (const auto entity : *_componentsToRemove)
                 {
                     _components.erase(entity);
                 }
 
                 _componentsToRemove->clear();
-
-                Base::FlushRemoveBuffers();
             }
 
             inline void SetupMasterRemoveMap(ComponentTypeIdToEntityBufferPtrMap & masterRemoveMap)

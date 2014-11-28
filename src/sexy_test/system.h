@@ -2,7 +2,7 @@
 
 #include "sexy/sexy.h"
 
-#include "component.h"
+#include "components.h"
 
 namespace sexy_test
 {
@@ -19,16 +19,5 @@ namespace sexy_test
         using Base = sexy::System<sexy::BasicSystemRegister<TestSystem1>,
                                   sexy::BasicComponentRegister<TestComponent0>,
                                   sexy::BasicComponentRegister<TestComponent1>>;
-
-    public:
-        void FlushAddBuffers()
-        {
-            Base::FlushAddBuffers();
-        }
-
-        void FlushRemoveBuffers()
-        {
-            Base::FlushRemoveBuffers();
-        }
     };
 }

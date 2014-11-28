@@ -30,10 +30,10 @@
     <ClInclude Include="system.h">
       <Filter>Header Files\sexy</Filter>
     </ClInclude>
-    <ClInclude Include="component.h">
+    <ClInclude Include="components.h">
       <Filter>Header Files\sexy</Filter>
     </ClInclude>
-    <ClInclude Include="event.h">
+    <ClInclude Include="events.h">
       <Filter>Header Files\sexy</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,7 +5,8 @@
 #include "gtest/gtest.h"
 #include "sexy/sexy.h"
 
-#include "component.h"
+#include "components.h"
+#include "events.h"
 #include "system.h"
 
 using namespace sexy;
@@ -60,7 +61,7 @@ TEST(SystemTest, GetComponentTest0)
 
     auto expected = testSystem.AddComponent<CTestComponent0>(entity);
 
-    testSystem.FlushAddBuffers();
+    testSystem.Update();
 
     auto actual = testSystem.GetComponent<CTestComponent0>(entity);
 
@@ -79,7 +80,7 @@ TEST(SystemTest, GetComponentsTest0)
     testSystem.AddComponent<CTestComponent0>(entity0);
     testSystem.AddComponent<CTestComponent0>(entity1);
 
-    testSystem.FlushAddBuffers();
+    testSystem.Update();
 
     auto iterable = testSystem.GetComponents<CTestComponent0>();
 
@@ -94,18 +95,11 @@ TEST(SystemTest, GetComponentsTest0)
     ASSERT_EQ(expected, actual);
 }
 
-TEST(SystemTest, FlushAddBuffersTest0)
+TEST(SystemTest, UpdateTest0)
 {
     TestSystem1 testSystem{};
 
-    ASSERT_NO_THROW(testSystem.FlushAddBuffers());
-}
-
-TEST(SystemTest, FlushRemoveBuffersTest0)
-{
-    TestSystem1 testSystem{};
-
-    ASSERT_NO_THROW(testSystem.FlushRemoveBuffers());
+    ASSERT_NO_THROW(testSystem.Update());
 }
 
 TEST(SystemTest, PreSendAllTest0)
@@ -136,7 +130,7 @@ TEST(SystemTest, SendAllTest0)
     auto & testComponent0 = testSystem.AddComponent<CTestComponent0>(entity0);
     auto & testComponent1 = testSystem.AddComponent<CTestComponent1>(entity1);
 
-    testSystem.FlushAddBuffers();
+    testSystem.Update();
 
     const auto expected = 2;
     int actual = 0;
@@ -153,7 +147,7 @@ TEST(SystemTest, PostSendAllTest0)
 
     TestSystem1 testSystem{};
 
-    testSystem.FlushAddBuffers();
+    testSystem.Update();
 
     const auto expected = 2;
     int actual = 0;
@@ -173,7 +167,7 @@ TEST(SystemTest, SendAllTargetTest0)
 
     auto & testComponent0 = testSystem.AddComponent<CTestComponent0>(entity0);
 
-    testSystem.FlushAddBuffers();
+    testSystem.Update();
 
     const auto expected = 1;
     int actual = 0;
@@ -207,7 +201,7 @@ TEST(SystemTest, SendTest0)
 
     auto & testComponent0 = testSystem.AddComponent<CTestComponent0>(entity0);
 
-    testSystem.FlushAddBuffers();
+    testSystem.Update();
 
     const auto expected = 1;
     int actual = 0;
@@ -227,7 +221,7 @@ TEST(SystemTest, SendTargetTest0)
 
     auto & testComponent0 = testSystem.AddComponent<CTestComponent0>(entity0);
 
-    testSystem.FlushAddBuffers();
+    testSystem.Update();
 
     const auto expected = 1;
     int actual = 0;

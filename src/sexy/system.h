@@ -1,7 +1,9 @@
 #pragma once
 
+#include <chrono>
 #include <utility>
 
+#include "events.h"
 #include "iterator.h"
 #include "system_impl.h"
 #include "typedefs.h"
@@ -19,6 +21,12 @@ namespace sexy
         using This = System<TSystemRegister, TComponentRegisters ...>;
         using Base = impl::SystemImpl<TSystemRegister, TComponentRegisters ...>;
 
+        template <typename TComponent>
+        using FindBase = typename Base::template FindBase < TComponent > ;
+
+        template <typename TComponent>
+        using ComponentIterable = typename Base::template ComponentIterable < TComponent > ;
+
         Entity _entityCounter;
         EntityBuffer _entityRemoveBuffer;
         EntityBuffer _deadEntityBuffer;
@@ -26,16 +34,14 @@ namespace sexy
         EntityToComponentTypeIdSetMap _entityToComponentTypesMap;
         ComponentTypeIdToEntityBufferPtrMap _masterComponentsToRemoveMap;
 
-    protected:
-        template <typename TComponent>
-        using FindBase = typename Base::template FindBase<TComponent>;
-
-        template <typename TComponent>
-        using ComponentIterable = typename Base::template ComponentIterable<TComponent>;
+        std::chrono::steady_clock::time_point _lastTimePoint;
+        std::chrono::duration<float, std::ratio<1, 1>> _deltaTime;
 
         void FlushAddBuffers()
         {
+            Base::PreSendAll<events::Initialize>();
             Base::FlushAddBuffers();
+            Base::PostSendAll<events::Initialize>();
         }
 
         void FlushRemoveBuffers()
@@ -62,6 +68,22 @@ namespace sexy
         }
 
     public:
+        inline void CustomUpdate() { }
+
+        inline void Update()
+        {
+            auto currentTimePoint = std::chrono::steady_clock::now();
+            _deltaTime = std::chrono::duration_cast<std::chrono::nanoseconds>(currentTimePoint - _lastTimePoint);
+            _lastTimePoint = currentTimePoint;
+
+            static_cast<CSystem * const>(this)->CustomUpdate();
+
+            SendAll<events::Update>(this);
+
+            FlushAddBuffers();
+            FlushRemoveBuffers();
+        }
+
         const Entity CreateEntity()
         {
             Entity returnValue;
@@ -150,7 +172,9 @@ namespace sexy
                    _entityRemoveBuffer{},
                    _deadEntityBuffer{},
                    _entityToComponentTypesMap{},
-                   _masterComponentsToRemoveMap{}
+                   _masterComponentsToRemoveMap{},
+                   _lastTimePoint{ std::chrono::steady_clock::now() },
+                   _deltaTime{}
         {
             SetupMasterRemoveMap();
         }

@@ -3,6 +3,7 @@
 #include "component.h"
 #include "component_description.h"
 #include "component_register.h"
+#include "events.h"
 #include "iterator.h"
 #include "system.h"
 #include "system_description.h"

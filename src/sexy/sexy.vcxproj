@@ -65,6 +65,7 @@
       <Command>echo f | xcopy /y "$(SolutionDir)sexy\component.h" "$(OutDir)sexy\include\sexy\component.h"
 echo f | xcopy /y "$(SolutionDir)sexy\component_description.h" "$(OutDir)sexy\include\sexy\component_description.h"
 echo f | xcopy /y "$(SolutionDir)sexy\component_register.h" "$(OutDir)sexy\include\sexy\component_register.h"
+echo f | xcopy /y "$(SolutionDir)sexy\events.h" "$(OutDir)sexy\include\sexy\events.h"
 echo f | xcopy /y "$(SolutionDir)sexy\iterator.h" "$(OutDir)sexy\include\sexy\iterator.h"
 echo f | xcopy /y "$(SolutionDir)sexy\sexy.h" "$(OutDir)sexy\include\sexy\sexy.h"
 echo f | xcopy /y "$(SolutionDir)sexy\system.h" "$(OutDir)sexy\include\sexy\system.h"
@@ -96,6 +97,7 @@ echo f | xcopy /y "$(OutDir)sexy.lib" "$(OutDir)sexy\lib\sexy.lib"</Command>
     <ClInclude Include="component.h" />
     <ClInclude Include="component_register.h" />
     <ClInclude Include="component_description.h" />
+    <ClInclude Include="events.h" />
     <ClInclude Include="iterator.h" />
     <ClInclude Include="sexy.h" />
     <ClInclude Include="stdafx.h" />

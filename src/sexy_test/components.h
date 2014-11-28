@@ -4,7 +4,7 @@
 
 #include "sexy/sexy.h"
 
-#include "event.h"
+#include "events.h"
 
 namespace sexy_test
 {
@@ -29,12 +29,6 @@ namespace sexy_test
         }
 
     public:
-        template <typename TSystem>
-        void Start(TSystem & system)
-        {
-
-        }
-
         TestComponent0(TEntity ownerEntity) : sexy::Component<TEntity>(ownerEntity)
         { }
     };
@@ -60,12 +54,6 @@ namespace sexy_test
         }
 
     public:
-        template <typename TSystem>
-        void Start(TSystem & system)
-        {
-
-        }
-
         TestComponent1(TEntity ownerEntity) : sexy::Component<TEntity>(ownerEntity)
         { }
     };
