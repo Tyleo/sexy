@@ -2,10 +2,13 @@
 
 namespace sexy
 {
+    #define SEXY_EVENT(Event) \
+        struct Event final { };
+
     namespace events
     {
-        struct Initialize final { };
-        struct Update final { };
-        struct Uninitialize final { };
+        SEXY_EVENT(Initialize);
+        SEXY_EVENT(Update);
+        SEXY_EVENT(Uninitialize);
     }
 }
