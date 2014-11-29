@@ -37,6 +37,12 @@ namespace sexy
         std::chrono::steady_clock::time_point _lastTimePoint;
         std::chrono::duration<float, std::ratio<1, 1>> _deltaTime;
 
+        void SetupMasterRemoveMap()
+        {
+            Base::SetupMasterRemoveMap(_masterComponentsToRemoveMap);
+        }
+
+    protected:
         void FlushAddBuffers()
         {
             Base::PreSendAll<events::Initialize>();
@@ -60,11 +66,6 @@ namespace sexy
             _entityRemoveBuffer.clear();
 
             Base::FlushRemoveBuffers();
-        }
-
-        void SetupMasterRemoveMap()
-        {
-            Base::SetupMasterRemoveMap(_masterComponentsToRemoveMap);
         }
 
     public:
