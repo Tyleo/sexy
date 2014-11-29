@@ -21,8 +21,8 @@ namespace sexy
         Component() = default;
     };
 
-    #define TYPEDEF_C(Component, Entity) \
-        using C##Component = Component<Entity>;
+    #define TYPEDEF_C(Component, Entity, ...) \
+        using C##Component = Component<Entity, ##__VA_ARGS__>;
 
     #define COMPONENT_INTERNALS \
         public: \
