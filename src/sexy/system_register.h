@@ -27,8 +27,8 @@ namespace sexy
         public: \
         using CSystem = typename TSystemRegister::System; \
         using Entity = typename TSystemRegister::SystemDescription::Entity; \
-        private: \
         using ComponentTypeId = typename TSystemRegister::SystemDescription::ComponentTypeId; \
+        private: \
         using EntityBuffer = typename TSystemRegister::SystemDescription::EntityBuffer; \
         using EntityBufferPtr = typename TSystemRegister::SystemDescription::EntityBufferPtr; \
         template <typename TComponent> \

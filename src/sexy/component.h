@@ -9,6 +9,7 @@ namespace sexy
     protected:
         using System = TSystem;
         using Entity = typename TSystem::Entity;
+        using ComponentTypeId = typename TSystem::ComponentTypeId;
 
     private:
         Entity _ownerEntity;
