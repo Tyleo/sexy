@@ -15,9 +15,6 @@ namespace sexy_test
                                                   sexy::BasicComponentRegister<TestComponent0>,
                                                   sexy::BasicComponentRegister<TestComponent1>>
     {
-    private:
-        using Base = sexy::System<sexy::BasicSystemRegister<TestSystem1>,
-                                  sexy::BasicComponentRegister<TestComponent0>,
-                                  sexy::BasicComponentRegister<TestComponent1>>;
+
     };
 }

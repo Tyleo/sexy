@@ -15,9 +15,10 @@ namespace sexy
     class System : private impl::SystemImpl<TSystemRegister,
                                             TComponentRegisters ...>
     {
-    private:
+    protected:
         ENABLE_SYSTEM_REGISTER_TYPEDEFS(TSystemRegister);
 
+    private:
         using This = System<TSystemRegister, TComponentRegisters ...>;
         using Base = impl::SystemImpl<TSystemRegister, TComponentRegisters ...>;
 

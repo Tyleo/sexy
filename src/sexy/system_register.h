@@ -24,8 +24,10 @@ namespace sexy
     ///        them easier to access.
     /// \tparam TSystemRegister The SystemRegister to make accessible.
     #define ENABLE_SYSTEM_REGISTER_TYPEDEFS(TSystemRegister) \
+        public: \
         using CSystem = typename TSystemRegister::System; \
         using Entity = typename TSystemRegister::SystemDescription::Entity; \
+        private: \
         using ComponentTypeId = typename TSystemRegister::SystemDescription::ComponentTypeId; \
         using EntityBuffer = typename TSystemRegister::SystemDescription::EntityBuffer; \
         using EntityBufferPtr = typename TSystemRegister::SystemDescription::EntityBufferPtr; \

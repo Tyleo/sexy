@@ -29,7 +29,7 @@ TEST(SystemTest, CreateEntityTest0)
 
 TEST(SystemTest, AddComponentTest0)
 {
-    TYPEDEF_C(TestComponent0, BasicEntity);
+    TYPEDEF_C(TestComponent0, TestSystem1);
 
     TestSystem1 testSystem{};
 
@@ -40,7 +40,7 @@ TEST(SystemTest, AddComponentTest0)
 
 TEST(SystemTest, RemoveComponentTest0)
 {
-    TYPEDEF_C(TestComponent0, BasicEntity);
+    TYPEDEF_C(TestComponent0, TestSystem1);
 
     TestSystem1 testSystem{};
 
@@ -53,7 +53,7 @@ TEST(SystemTest, RemoveComponentTest0)
 
 TEST(SystemTest, GetComponentTest0)
 {
-    TYPEDEF_C(TestComponent0, BasicEntity);
+    TYPEDEF_C(TestComponent0, TestSystem1);
 
     TestSystem1 testSystem{};
 
@@ -70,7 +70,7 @@ TEST(SystemTest, GetComponentTest0)
 
 TEST(SystemTest, GetComponentsTest0)
 {
-    TYPEDEF_C(TestComponent0, BasicEntity);
+    TYPEDEF_C(TestComponent0, TestSystem1);
 
     TestSystem1 testSystem{};
 
@@ -104,8 +104,8 @@ TEST(SystemTest, UpdateTest0)
 
 TEST(SystemTest, PreSendAllTest0)
 {
-    TYPEDEF_C(TestComponent0, BasicEntity);
-    TYPEDEF_C(TestComponent1, BasicEntity);
+    TYPEDEF_C(TestComponent0, TestSystem1);
+    TYPEDEF_C(TestComponent1, TestSystem1);
 
     TestSystem1 testSystem{};
 
@@ -119,8 +119,8 @@ TEST(SystemTest, PreSendAllTest0)
 
 TEST(SystemTest, SendAllTest0)
 {
-    TYPEDEF_C(TestComponent0, BasicEntity);
-    TYPEDEF_C(TestComponent1, BasicEntity);
+    TYPEDEF_C(TestComponent0, TestSystem1);
+    TYPEDEF_C(TestComponent1, TestSystem1);
 
     TestSystem1 testSystem{};
 
@@ -142,8 +142,8 @@ TEST(SystemTest, SendAllTest0)
 
 TEST(SystemTest, PostSendAllTest0)
 {
-    TYPEDEF_C(TestComponent0, BasicEntity);
-    TYPEDEF_C(TestComponent1, BasicEntity);
+    TYPEDEF_C(TestComponent0, TestSystem1);
+    TYPEDEF_C(TestComponent1, TestSystem1);
 
     TestSystem1 testSystem{};
 
@@ -159,7 +159,7 @@ TEST(SystemTest, PostSendAllTest0)
 
 TEST(SystemTest, SendAllTargetTest0)
 {
-    TYPEDEF_C(TestComponent0, BasicEntity);
+    TYPEDEF_C(TestComponent0, TestSystem1);
 
     TestSystem1 testSystem{};
 
@@ -179,7 +179,7 @@ TEST(SystemTest, SendAllTargetTest0)
 
 TEST(SystemTest, PreSendTest0)
 {
-    TYPEDEF_C(TestComponent0, BasicEntity);
+    TYPEDEF_C(TestComponent0, TestSystem1);
 
     TestSystem1 testSystem{};
 
@@ -193,7 +193,7 @@ TEST(SystemTest, PreSendTest0)
 
 TEST(SystemTest, SendTest0)
 {
-    TYPEDEF_C(TestComponent0, BasicEntity);
+    TYPEDEF_C(TestComponent0, TestSystem1);
 
     TestSystem1 testSystem{};
 
@@ -213,7 +213,7 @@ TEST(SystemTest, SendTest0)
 
 TEST(SystemTest, SendTargetTest0)
 {
-    TYPEDEF_C(TestComponent0, BasicEntity);
+    TYPEDEF_C(TestComponent0, TestSystem1);
 
     TestSystem1 testSystem{};
 
@@ -233,7 +233,7 @@ TEST(SystemTest, SendTargetTest0)
 
 TEST(SystemTest, PostSendTest0)
 {
-    TYPEDEF_C(TestComponent0, BasicEntity);
+    TYPEDEF_C(TestComponent0, TestSystem1);
 
     TestSystem1 testSystem{};
 

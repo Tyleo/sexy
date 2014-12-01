@@ -8,8 +8,8 @@
 
 namespace sexy_test
 {
-    template <typename TEntity>
-    class TestComponent0 final : public sexy::Component<TEntity>
+    template <typename TSystem>
+    class TestComponent0 final : public sexy::Component<TSystem>
     {
         COMPONENT_INTERNALS;
     private:
@@ -29,12 +29,12 @@ namespace sexy_test
         }
 
     public:
-        TestComponent0(TEntity ownerEntity) : sexy::Component<TEntity>(ownerEntity)
+        TestComponent0(Entity ownerEntity) : sexy::Component<TSystem>(ownerEntity)
         { }
     };
 
-    template <typename TEntity>
-    class TestComponent1 final : public sexy::Component<TEntity>
+    template <typename TSystem>
+    class TestComponent1 final : public sexy::Component<TSystem>
     {
         COMPONENT_INTERNALS;
     private:
@@ -54,7 +54,7 @@ namespace sexy_test
         }
 
     public:
-        TestComponent1(TEntity ownerEntity) : sexy::Component<TEntity>(ownerEntity)
+        TestComponent1(Entity ownerEntity) : sexy::Component<TSystem>(ownerEntity)
         { }
     };
 }

@@ -18,9 +18,9 @@ namespace sexy
         template <typename TSystemRegister>
         class SystemImpl<TSystemRegister>
         {
-        private:
             ENABLE_SYSTEM_REGISTER_TYPEDEFS(TSystemRegister);
-            
+
+        private:
             using This = SystemImpl<TSystemRegister>;
 
         protected:
@@ -58,13 +58,13 @@ namespace sexy
                          TComponentRegisters ...> : protected SystemImpl<TSystemRegister,
                                                                          TComponentRegisters ... >
         {
-        private:
             ENABLE_SYSTEM_REGISTER_TYPEDEFS(TSystemRegister);
             ENABLE_COMPONENT_REGISTER_TYPEDEFS(TComponentRegister);
 
+        private:
             using This = SystemImpl<TSystemRegister, TComponentRegister, TComponentRegisters ...>;
             using Base = SystemImpl<TSystemRegister, TComponentRegisters ...>;
-            using CComponent = UComponent<Entity>;
+            using CComponent = UComponent<CSystem>;
             using CComponentPtr = ComponentPtr<CComponent>;
             using CEntityToComponentPtrMap = EntityToComponentPtrMap<Entity, CComponentPtr>;
 

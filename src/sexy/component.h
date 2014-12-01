@@ -3,26 +3,30 @@
 // This namespace is only here because it makes me feel better. :)
 namespace sexy
 {
-    template <typename TEntity>
+    template <typename TSystem>
     class Component
     {
+    protected:
+        using System = TSystem;
+        using Entity = typename TSystem::Entity;
+
     private:
-        TEntity _ownerEntity;
+        Entity _ownerEntity;
 
     public:
-        const TEntity GetOwnerEntity() const
+        const Entity GetOwnerEntity() const
         {
             return _ownerEntity;
         }
 
-        Component(const TEntity ownerEntity) : _ownerEntity{ ownerEntity }
+        Component(const Entity ownerEntity) : _ownerEntity{ ownerEntity }
         { }
 
         Component() = default;
     };
 
-    #define TYPEDEF_C(Component, Entity, ...) \
-        using C##Component = Component<Entity, ##__VA_ARGS__>;
+    #define TYPEDEF_C(Component, TSystem, ...) \
+        using C##Component = Component<TSystem, ##__VA_ARGS__>;
 
     #define COMPONENT_INTERNALS \
         public: \

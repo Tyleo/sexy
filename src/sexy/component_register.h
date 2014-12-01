@@ -28,6 +28,7 @@ namespace sexy
     ///        them easier to access.
     /// \tparam TComponentRegister The ComponentRegister to make accessible.
     #define ENABLE_COMPONENT_REGISTER_TYPEDEFS(TComponentRegister) \
+        private: \
         template <typename TEntity> \
         using UComponent = typename TComponentRegister::template Component<TEntity>; \
         template <typename TEntity> \
