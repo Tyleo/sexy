@@ -5,6 +5,7 @@
 #include "component_register.h"
 #include "events.h"
 #include "iterator.h"
+#include "pair_hasher.h"
 #include "system.h"
 #include "system_description.h"
 #include "system_impl.h"

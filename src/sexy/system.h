@@ -15,7 +15,6 @@ namespace sexy
     class System : private impl::SystemImpl<TSystemRegister,
                                             TComponentRegisters ...>
     {
-    protected:
         ENABLE_SYSTEM_REGISTER_TYPEDEFS(TSystemRegister);
 
     private:
@@ -23,10 +22,10 @@ namespace sexy
         using Base = impl::SystemImpl<TSystemRegister, TComponentRegisters ...>;
 
         template <typename TComponent>
-        using FindBase = typename Base::template FindBase < TComponent > ;
+        using FindBase = typename Base::template FindBase<TComponent>;
 
         template <typename TComponent>
-        using ComponentIterable = typename Base::template ComponentIterable < TComponent > ;
+        using ComponentIterable = typename Base::template ComponentIterable<TComponent>;
 
         Entity _entityCounter;
         EntityBuffer _entityRemoveBuffer;
@@ -119,7 +118,7 @@ namespace sexy
         const ComponentPtr<TComponent> AddComponent(const Entity entity, const TArgs & ... args)
         {
             const ComponentPtr<TComponent> & newComponent{ FindBase<TComponent>::AddComponent(entity, args ...) };
-            _entityToComponentTypesMap.at(entity).emplace(newComponent);
+            _entityToComponentTypesMap.at(entity).emplace(GetComponentTypeId<TComponent>());
             return newComponent;
         }
 
@@ -142,9 +141,9 @@ namespace sexy
         }
 
         template <typename TComponent>
-        const ComponentTypeId GetComponentTypeId()
+        static const ComponentTypeId GetComponentTypeId()
         {
-            return Base::GetComponentTypeId();
+            return Base::GetComponentTypeId<TComponent>();
         }
 
         template <typename TEvent, typename ... TArgs>

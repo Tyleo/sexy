@@ -143,7 +143,7 @@ namespace sexy
             }
 
             template <typename TComponent>
-            inline const ComponentTypeId GetComponentTypeId()
+            static inline const ComponentTypeId GetComponentTypeId()
             {
                 return sizeof ... (TComponentRegisters) + 1;
             }

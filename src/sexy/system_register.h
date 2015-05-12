@@ -1,5 +1,9 @@
 #pragma once
 
+#include <utility>
+
+#include "pair_hasher.h"
+
 namespace sexy
 {
     /// \struct SystemRegister system_register.h "sexy/system_register.h"
@@ -28,6 +32,8 @@ namespace sexy
         using CSystem = typename TSystemRegister::System; \
         using Entity = typename TSystemRegister::SystemDescription::Entity; \
         using ComponentTypeId = typename TSystemRegister::SystemDescription::ComponentTypeId; \
+        using ComponentGuid = std::pair<Entity, ComponentTypeId>; \
+        using ComponentGuidHasher = PairHasher<ComponentGuid>; \
         private: \
         using EntityBuffer = typename TSystemRegister::SystemDescription::EntityBuffer; \
         using EntityBufferPtr = typename TSystemRegister::SystemDescription::EntityBufferPtr; \

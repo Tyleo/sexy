@@ -33,6 +33,13 @@ namespace sexy
         TInternalIterator _internalIterator;
 
     public:
+        using iterator_category = typename TInternalIterator::iterator_category;
+        using value_type = TItem;
+        using difference_type = typename TInternalIterator::difference_type;
+        using distance_type = typename TInternalIterator::distance_type;
+        using pointer = TItem *;
+        using reference = TItem &;
+
         /// \fn operator *
         /// \brief Dereferences the iterator.
         /// \return The value the iterator points to.

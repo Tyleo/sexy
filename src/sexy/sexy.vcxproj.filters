@@ -57,6 +57,9 @@
     <ClInclude Include="events.h">
       <Filter>Header Files\sexy</Filter>
     </ClInclude>
+    <ClInclude Include="pair_hasher.h">
+      <Filter>Header Files\sexy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

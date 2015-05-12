@@ -1,5 +1,7 @@
 #pragma once
 
+#include <utility>
+
 // This namespace is only here because it makes me feel better. :)
 namespace sexy
 {
@@ -10,6 +12,8 @@ namespace sexy
         using System = TSystem;
         using Entity = typename TSystem::Entity;
         using ComponentTypeId = typename TSystem::ComponentTypeId;
+        using ComponentGuid = typename TSystem::ComponentGuid;
+        using ComponentGuidHasher = typename TSystem::ComponentGuidHasher;
 
     private:
         Entity _ownerEntity;
@@ -52,7 +56,12 @@ namespace sexy
         } \
         template <typename TEvent, typename ... TArgs> \
         inline static void Post(TEvent, const TArgs & ...) { } \
+        const ComponentGuid GetComponentGuid() const \
+        { \
+            return std::make_pair(GetOwnerEntity(), System::GetComponentTypeId<decltype(*this)>()); \
+        } \
         private:
+
 
     #define COMPONENT_START() \
         template <typename TSystem> \
@@ -69,5 +78,4 @@ namespace sexy
     #define COMPONENT_POST(Event, ...) \
         template <> \
         static void Post<Event>(__VA_ARGS__)
-        
 }
